@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Admin</title>
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+{% load static %}
+{%include 'header.html' %}
+	{% block content %}
+	{% endblock content %}
+ <link href="{% static 'loginmodule/css/bootstrap.min.css'%}" rel="stylesheet">
+
+	<link rel="stylesheet" href="{% static 'loginmodule/css/font-awesome.min.css'%}">
+	<link rel="stylesheet" href="{% static 'loginmodule/css/animate.css'%}">
+
+
+	<link href="{% static 'loginmodule/css/animate.min.css'%}" rel="stylesheet"> 
+	<link href="{% static 'loginmodule/css/style.css'%}" rel="stylesheet" />		
+	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico'%}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css'%}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css'%}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'loginmodule/css/util.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'loginmodule/css/root.css'%}">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image: url('{% static 'loginmodule/images/bg-01.jpg'%}');">
+					<span class="login100-form-title-1">
+			Deleting User..
+					</span>
+				</div>
+
+			
+					<!-- <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+						<span class="label-input100">Username</span>
+						<input class="input100" type="text" name="username" id="username" placeholder="Enter username">
+						<span class="focus-input100"></span>
+					</div>
+ -->	
+ 						
+
+	<!-- 				<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+						<span class="label-input100">Username</span>
+						<input class="input100" type="text" name="username" id="username" placeholder="Enter username">
+						<span class="focus-input100"></span>
+					</div>
+ -->
+	To Update user please enter username here...
+
+				<form class="login100-form validate-form" action="/loginmodule/updatedata/" method="post">{% csrf_token %}
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+						<span class="label-input100">Username</span>
+						<input class="input100" type="text" name="username" id="username" placeholder="Enter username">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+						<span class="label-input100">Firstname</span>
+						<input class="input100" type="text" name="fname" id="password" placeholder="Enter password">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+						<span class="label-input100">ID</span>
+						<input class="input100" type="text" name="id" id="password" placeholder="Enter password">
+						<span class="focus-input100"></span>
+					</div>
+
+				<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+						<span class="label-input100">Lastname</span>
+						<input class="input100" type="text" name="lname" id="fname" placeholder="Enter username">
+						<span class="focus-input100"></span>
+					</div>
+<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+						<span class="label-input100">email</span>
+						<input class="input100" type="text" name="email" id="username" placeholder="Enter username">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+Update					</button>
+					</div>
+				</form>
+	
+			</div>
+		</div>
+	</div>
+	
+
+
+</body>
+</html>

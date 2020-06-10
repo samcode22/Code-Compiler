@@ -1,0 +1,8 @@
+ashish1231.c:1:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ main()
+ ^
+ashish1231.c: In function 'main':
+ashish1231.c:5:1: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+ashish1231.c:5:1: warning: incompatible implicit declaration of built-in function 'printf'
+ashish1231.c:5:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+ashish1231.c:7:1: error: expected ';' before '}' token

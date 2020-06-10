@@ -1,0 +1,41 @@
+<html>
+<head>
+{%load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'loginmodule/main.css'%}">
+<title>code</title>
+<body>
+
+<div class="container-login100">
+code
+<br>
+
+<form action="/compile/insert/" method="POST">{% csrf_token %}
+<center>
+					<div class="wrap-input100 validate-input" >
+<textarea rows="50" cols="100" name="code"></textarea><br>
+						
+						
+<select name="type">
+    <option value="c">c</option>
+    <option value="c++">c++</option>
+    <option value="java">java</option>
+
+  </select>
+  
+ 
+  
+</div>
+<div class="container-login100-form-btn"> 
+							<div class="login100-form-btn">
+							<input type="submit" name="Submit" value="Submit" >
+							</div>
+							<!-- <button class="login100-form-btn">
+								Submit
+								</button>
+						 -->
+					</div>
+					</center>
+					</form>
+</div>
+</body>
+</html>

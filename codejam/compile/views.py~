@@ -1,0 +1,168 @@
+from django.shortcuts import render
+from django.contrib.sessions.models import Session
+# Create your views here.
+from django.shortcuts import render_to_response
+from django.views.generic import TemplateView
+from django.http import HttpResponseRedirect
+import MySQLdb	
+from django.template.context_processors import csrf	
+import os, filecmp
+from django.views.generic import TemplateView
+import os
+import sys
+import filecmp
+import re
+import subprocess
+from subprocess import CalledProcessError, TimeoutExpired
+#import mysql.connector
+def code(request):
+	#uname = request.POST.get('name', '')
+	#code = request.POST.get('code', '')
+	return render_to_response('code.html')
+
+def insert(request):
+	
+	
+	# Open database connection
+	db = MySQLdb.connect("192.168.29.150","ce72","ce72","ce72")
+
+	# prepare a cursor object using cursor() method
+	cursor = db.cursor()
+	uname = request.session['sname']
+	code = request.POST.get('code', '')
+	type=request.POST.get('type', '')
+	qno=request.POST.get('qno','')
+	str2=uname+qno+"."+type
+	#has=file.read()
+	#print(file.read())
+	#has="#include <stdio.h> main() { int i; printf(%d,i=1) ; }"
+	#print('#include <stdio.h> main() { int i; printf(%d,i=1) ; }')
+	#Prepare SQL query to INSERT a record into the database.
+	#mySQLconnection = mysql.connector.connect(host='localhost',
+         #                    database='ashish',
+          #                   user='ashish',
+           #                  password='ashish')
+	sql="select * from compile_coder where uname=%s and code1=%s"
+	arg=(uname,[str2])
+	cursor = db.cursor()
+	cursor.execute(sql,arg)
+	records = cursor.fetchall()
+	print(records)
+	if len(records)!=0:
+	    #print('a')
+	  	sql1="update compile_coder set code1=%s where uname=%s and code1=%s"
+	  	arg=(str2,uname,str2)
+	  	cursor.execute(sql1,arg)
+		
+#	else:
+	sql="insert into compile_coder(uname,code1) values(%s,%s)"
+	arg=(uname,str2)
+	print(str2)
+	#mySQLconnection.commit()
+	#cursor.close()
+	count=0
+	str=""
+	str1=""
+	
+	#fname=request.POST.get('fname')
+	
+	
+	
+	if(type=='c'):
+		with open(str2,"w") as t:
+			t.write(code)
+			
+	
+		os.system("gcc "+str2)# | a.exe")# >aout.txt")
+		os.system("a >aout.txt")
+		with open("aout.txt","r") as t:
+			str=t.read()
+		if qno==1:
+			with open("output1.txt","r") as t:
+				str1=t.read()
+				print(str1)
+	
+		if qno==2:
+			with open("output2.txt","r") as t:
+				str1=t.read()
+		if qno==3:
+			with open("output3.txt","r") as t:
+				str1=t.read()
+	if(type=='java'):
+		with open(str2,"w") as t:
+			t.write(code)
+		
+		os.system("javac "+uname+qno+".java")
+		os.system("java "+uname+qno+" > aout.txt")
+		with open("aout.txt","r") as t:
+			str=t.read()
+		if int(qno)==1:
+			with open("outputjava1.txt","r") as t:
+				str1=t.read()
+	
+		if qno==2:
+			with open("outputjava2.txt","r") as t:
+				str1=t.read()
+		if qno==3:
+			with open("outputjava3.txt","r") as t:
+				str1=t.read()
+	if(type=='c++'):
+		with open(str2,"w") as t:
+			t.write(code);
+		
+		os.system("g++ "+str2)
+		os.system("a >aout.txt")
+		with open("aout.txt","r") as t:
+			str=t.read()
+		if qno==1:
+			with open("outputcpp1.txt","r") as t:
+				str1=t.read()
+	
+		if qno==2:
+			with open("outputcpp2.txt","r") as t:
+				str1=t.read()
+		if qno==3:
+			with open("outputcpp3.txt","r") as t:
+				str1=t.read()
+	#print(str)
+	#print(str1)
+	s=str1.split(' ')
+	s1=str.split(' ')
+	print(s)
+	print(s1)
+	if s == s1:
+		print("h")
+		count=100
+	#count=50
+	c={}
+	print(count)
+	try:
+	   # Execute the SQL command
+	   cursor.execute(sql,arg)
+	   # Commit your changes in the database
+	   db.commit()
+	except:
+	   # Rollback in case there is any error
+	   db.rollback()
+
+	# disconnect from server
+	db.close()
+	return render_to_response('insert.html',{'c':count})
+
+	# In[ ]:
+
+def leaderboard(request):
+	db = MySQLdb.connect("192.168.29.150","ce72","ce72","ce72")
+
+	# prepare a cursor object using cursor() method
+	#cursor = db.cursor()
+	uname = request.session['sname']
+	
+	sql="select count(*) from compile_coder where uname='ashishk1'"
+	
+	cursor = db.cursor()
+	cursor.execute(sql)#,arg)
+	records = cursor.fetchall()
+	print(records)
+	return render_to_response('leaderboard.html')
+
